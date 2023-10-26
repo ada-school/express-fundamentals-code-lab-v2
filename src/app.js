@@ -1,15 +1,22 @@
-const express = require("express");
 const app = express();
-const mediumClientsEndpoint = require("./medium-clients");
-const premiumClientsEndpoint = require("./premium-clients");
+
+const users = [
+  { email: "admin@example.com", name: "admin", rol: "admin" },
+  { email: "user@example.com", name: "user", rol: "user" },
+];
 
 app.use(express.json());
-
-app.use("/api/medium-clients", mediumClientsEndpoint);
-app.use("/api/premium-clients", premiumClientsEndpoint);
 
 app.get("/", function (req, res) {
   res.send("Bienvenido a la api de ADA Cars");
 });
 
-module.exports = app;
+
+//Se recomienda no editar ni eliminar la instancia del servidor.
+// Instancia del servidor
+const server = app.listen(PORT, () => {
+  console.log(`listening on port http://localhost:${PORT}`);
+});
+
+// Exportación del servidor
+module.exports = server;
