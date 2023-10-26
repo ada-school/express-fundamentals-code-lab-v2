@@ -1,10 +1,14 @@
-// TODO: Completa tu código aquí ⬇️
+const express = require("express");
+const app = express();
 
-//Se recomienda no editar ni eliminar la instancia del servidor.
-// Instancia del servidor
-const server = app.listen(PORT, () => {
-  console.log(`listening on port http://localhost:${PORT}`);
+const mediumClients = require("./medium-clients");
+const premiumClients = require("./premium-clients");
+
+app.use("/medium-clients", mediumClients);
+app.use("/premium-clients", premiumClients);
+
+app.get("/", function (req, res) {
+  res.send("Bienvenido a la api de ADA Cars");
 });
 
-// Exportación del servidor
-module.exports = server;
+module.exports = app;
